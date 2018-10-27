@@ -1,24 +1,20 @@
 <template lang="pug">
-    div
-      span(v-model=test ref=test)
-      div(v-model=videos)
+    div {{videos}}
 </template>
 <script>
   export default {
     data () {
       return {
-        test: 'testing',
-        videos: (function () {
-          chrome.storage.sync.get(['videos'], function (data) {
-            console.log(data)
-            return data.videos.toString()
-          })
-        })()
+        videos: []
       }
     },
     computed: { },
     created () {
-      console.log('popup!')
+      let _this = this
+      chrome.storage.sync.get(['videos'], function (data) {
+        console.log(data.videos)
+        _this.videos = data.videos.toString()
+      })
     },
     mounted () { },
     methods: {
