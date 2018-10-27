@@ -1,19 +1,29 @@
 <template lang="pug">
     div
-      el-button(type="primary" @click="tab") New tab
+      span(v-model=test ref=test)
+      div(v-model=videos)
 </template>
 <script>
   export default {
-    data: () => ({
-    }),
+    data () {
+      return {
+        test: 'testing',
+        videos: (function () {
+          chrome.storage.sync.get(['videos'], function (data) {
+            console.log(data)
+            return data.videos.toString()
+          })
+        })()
+      }
+    },
     computed: { },
     created () {
-      console.log('New tab')
+      console.log('popup!')
     },
     mounted () { },
     methods: {
       tab () {
-        chrome.tabs.create({ url: 'pages/app.html' })
+
       }
     }
   }
