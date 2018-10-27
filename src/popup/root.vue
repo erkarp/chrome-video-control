@@ -1,6 +1,12 @@
 <template lang="pug">
-    div {{videos}}
+  div
+    ul
+      li(v-for="video in videos" v-bind:key="video.id")
+        img(v-bind:src="video.favIconUrl")
+        span {{ video.title }}
+    button(v-on:click="clear()") Clear
 </template>
+
 <script>
   export default {
     data () {
@@ -12,20 +18,35 @@
     created () {
       let _this = this
       chrome.storage.sync.get(['videos'], function (data) {
-        console.log(data.videos)
-        _this.videos = data.videos.toString()
+        _this.videos = data.videos
       })
     },
     mounted () { },
     methods: {
-      tab () {
-
+      clear: function () {
+        chrome.storage.sync.set({ videos: [] })
       }
     }
   }
 </script>
+
 <style lang="scss">
-  div {
-    color: blue
+  ul {
+    list-style: none;
+    width: 250px;
+    padding-left: 0;
+  }
+  
+  li {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  
+  img {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
   }
 </style>
