@@ -2,8 +2,8 @@
   li
     span {{ video.title }}
     menu
-      button(v-on:click='play') play
-      button(v-on:click='pause') pause
+      button(v-on:click='play' v-show='!video.audible') play
+      button(v-on:click='pause' v-show='video.audible') pause
       button(v-on:click='rewind') -10
       button(v-on:click='highlight') tab
       button(v-on:click='close') X
@@ -31,7 +31,6 @@
         })
       },
       highlight: function () {
-        console.log(this.video)
         chrome.tabs.highlight({tabs: this.video.index})
       },
       close: function () {
@@ -47,8 +46,13 @@
     margin-top: 0;
     padding-left: 0;
   }
+
   button:last-child {
     float: right;
+  }
+
+  .play, .pause {
+    width: 50px;
   }
 </style>
 
