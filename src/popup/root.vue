@@ -1,19 +1,19 @@
 <template lang="pug">
   div
     ul
-      li(v-for="video in videos" v-bind:key="video.id")
-        img(v-bind:src="video.favIconUrl")
-        span {{ video.title }}
+      VidCtl(v-for="video in videos" v-bind:video="video"  v-bind:key="video.id")
     button(v-on:click="clear()") Clear
 </template>
 
 <script>
+  import VidCtl from './components/VidCtl.vue'
   export default {
     data () {
       return {
         videos: []
       }
     },
+    components: { VidCtl },
     computed: { },
     created () {
       let _this = this
@@ -33,20 +33,7 @@
 <style lang="scss">
   ul {
     list-style: none;
-    width: 250px;
+    width: 350px;
     padding-left: 0;
-  }
-  
-  li {
-    display: flex;
-    align-content: space-between;
-    align-items: center;
-    padding-bottom: 5px;
-  }
-  
-  img {
-    width: 25px;
-    height: 25px;
-    margin-right: 5px;
   }
 </style>
