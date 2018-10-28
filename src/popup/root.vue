@@ -1,8 +1,6 @@
 <template lang="pug">
-  div
-    ul
-      VidCtl(v-for="video in videos" v-bind:video="video"  v-bind:key="video.id")
-    button(v-on:click="clear()") Clear
+  ul
+    VidCtl(v-for="video in videos" v-bind:video="video"  v-bind:key="video.id")
 </template>
 
 <script>
