@@ -10,32 +10,27 @@
 </template>
 
 <script>
+  import controls from '../../controls'
+  
   export default {
     name: 'VidCtl',
     props: ['video'],
 
     methods: {
       play: function () {
-        chrome.tabs.executeScript(this.video.id, {
-          code: 'document.getElementsByTagName("video").item(0).play()'
-        })
+        controls.play(this.video)
       },
       pause: function () {
-        chrome.tabs.executeScript(this.video.id, {
-          code: 'document.getElementsByTagName("video").item(0).pause()'
-        })
+        controls.pause(this.video)
       },
       rewind: function () {
-        chrome.tabs.executeScript(this.video.id, {
-          code: 'document.getElementsByTagName("video").item(0).currentTime -= 10'
-        })
+        controls.rewind(this.video)
       },
       highlight: function () {
-        chrome.tabs.highlight({tabs: this.video.index})
+        controls.highlight(this.video)
       },
       close: function () {
-        chrome.tabs.remove(this.video.id)
-        this.$el.remove()
+        controls.close(this)
       }
     }
   }
