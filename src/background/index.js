@@ -33,6 +33,15 @@ const shortcutMethods = {
 
       chrome.storage.sync.set({pausedVideos})
     })
+  },
+  rewindVideos: function () {
+    chrome.storage.sync.get(['videos'], function (data) {
+      data.videos.forEach(video => {
+        if (video.audible) {
+          controls.rewind(video)
+        }
+      })
+    })
   }
 }
 

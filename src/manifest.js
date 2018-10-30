@@ -48,9 +48,15 @@ module.exports = {
   ],
   commands: {
     pauseOrPlayAll: {
-      description: 'Pause all playing videos',
+      description: 'Pause or restart all playing videos',
       suggested_key: {
-        default: 'Ctrl+Shift+S'
+        default: 'Ctrl+P'
+      }
+    },
+    rewindVideos: {
+      description: 'Rewind all playing videos',
+      suggested_key: {
+        default: 'Ctrl+R'
       }
     }
   }
