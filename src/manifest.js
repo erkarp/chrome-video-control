@@ -45,5 +45,13 @@ module.exports = {
   content_security_policy: "script-src 'self'; object-src 'self'",
   web_accessible_resources: [
     'js/content.js'
-  ]
+  ],
+  commands: {
+    pauseAllVideo: {
+      description: 'Pause all playing videos', 
+      suggested_key: {
+        default: 'Ctrl+Shift+S'
+      }
+    }
+  }
 }
