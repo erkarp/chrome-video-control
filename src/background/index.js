@@ -15,13 +15,23 @@ chrome.tabs.onUpdated.addListener(function (id, changeData) {
 })
 
 const shortcutMethods = {
-  pauseAllVideo: function () {
-    chrome.storage.sync.get(['videos'], function (data) {
-      data.videos.forEach(video => {
-        if (video.audible) {
-          controls.pause(video)
-        }
-      })
+  pauseOrPlayAll: function () {
+    chrome.storage.sync.get(['videos', 'pausedVideos'], function (data) {
+      let { videos, pausedVideos } = data
+
+      if (pausedVideos) {
+        pausedVideos.forEach(video => controls.play(video))
+        pausedVideos = false
+      } else {
+        pausedVideos = videos.filter(function (video) {
+          if (video.audible) {
+            controls.pause(video)
+            return true
+          }
+        })
+      }
+
+      chrome.storage.sync.set({pausedVideos})
     })
   }
 }

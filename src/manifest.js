@@ -47,8 +47,8 @@ module.exports = {
     'js/content.js'
   ],
   commands: {
-    pauseAllVideo: {
-      description: 'Pause all playing videos', 
+    pauseOrPlayAll: {
+      description: 'Pause all playing videos',
       suggested_key: {
         default: 'Ctrl+Shift+S'
       }
