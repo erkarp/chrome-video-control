@@ -5,7 +5,8 @@ chrome.tabs.onUpdated.addListener(function (id, changeData) {
     chrome.tabs.query({
       url: [
         'https://www.youtube.com/*',
-        'https://tyt.com/*'
+        'https://tyt.com/watch/*',
+        'https://videos-f.jwpsrv.com/content/*'
       ]},
 
     function (videos) {
@@ -34,13 +35,16 @@ const shortcutMethods = {
       chrome.storage.sync.set({pausedVideos})
     })
   },
+
   rewindVideos: function () {
     chrome.storage.sync.get(['videos'], function (data) {
-      data.videos.forEach(video => {
-        if (video.audible) {
-          controls.rewind(video)
-        }
-      })
+      data.videos.forEach(video => controls.rewind(video))
+    })
+  },
+
+  fastFwdVideos: function () {
+    chrome.storage.sync.get(['videos'], function (data) {
+      data.videos.forEach(video => controls.fastFwd(video))
     })
   }
 }

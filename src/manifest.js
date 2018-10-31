@@ -58,6 +58,12 @@ module.exports = {
       suggested_key: {
         default: 'Ctrl+R'
       }
+    },
+    fastFwdVideos: {
+      description: 'Fast forward all playing videos',
+      suggested_key: {
+        default: 'Ctrl+U'
+      }
     }
   }
 }

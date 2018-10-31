@@ -34,4 +34,9 @@
     width: 350px;
     padding-left: 0;
   }
+
+  li:not(:last-child) {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+  }
 </style>

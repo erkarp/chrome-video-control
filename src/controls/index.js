@@ -1,20 +1,24 @@
+function execute (videoId, videoCode) {
+  return chrome.tabs.executeScript(videoId, {
+    code: 'document.getElementsByTagName("video").item(0)' + videoCode
+  })
+}
+
 export default {
   play: function (video) {
-    chrome.tabs.executeScript(video.id, {
-      code: 'document.getElementsByTagName("video").item(0).play()'
-    })
+    execute(video.id, '.play()')
   },
 
   pause: function (video) {
-    chrome.tabs.executeScript(video.id, {
-      code: 'document.getElementsByTagName("video").item(0).pause()'
-    })
+    execute(video.id, '.pause()')
   },
 
   rewind: function (video) {
-    chrome.tabs.executeScript(video.id, {
-      code: 'document.getElementsByTagName("video").item(0).currentTime -= 10'
-    })
+    execute(video.id, '.currentTime -= 15')
+  },
+
+  fastFwd: function (video) {
+    execute(video.id, '.currentTime += 15')
   },
 
   highlight: function (video) {

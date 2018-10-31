@@ -4,7 +4,8 @@
     menu
       button(v-on:click='play' v-show='!video.audible') play
       button(v-on:click='pause' v-show='video.audible') pause
-      button(v-on:click='rewind') -10
+      button(v-on:click='rewind') -15
+      button(v-on:click='fastFwd') +15
       button(v-on:click='highlight') tab
       button(v-on:click='close') X
 </template>
@@ -25,6 +26,9 @@
       },
       rewind: function () {
         controls.rewind(this.video)
+      },
+      fastFwd: function () {
+        controls.fastFwd(this.video)
       },
       highlight: function () {
         controls.highlight(this.video)
